@@ -27,7 +27,8 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.jakewharton.android.repackaged:dalvik-dx:9.0.0_r3'
-    compileOnly project(':hooklib')
+    api project(':hooklib')
+    api project(':nativehook')
 }
 
 apply plugin: 'com.novoda.bintray-release'
