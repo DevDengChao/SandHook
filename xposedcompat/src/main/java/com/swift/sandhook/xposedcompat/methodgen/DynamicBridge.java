@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import de.robv.android.xposed.XposedBridge;
+import de.robv.android.xposedcompat.XposedBridge;
 
 public final class DynamicBridge {
 

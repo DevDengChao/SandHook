@@ -3,7 +3,7 @@ package com.swift.sandhook.xposedcompat.methodgen;
 import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 
-import de.robv.android.xposed.XposedBridge;
+import de.robv.android.xposedcompat.XposedBridge;
 
 public interface HookMaker {
     void start(Member member, XposedBridge.AdditionalHookInfo hookInfo,

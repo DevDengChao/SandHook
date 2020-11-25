@@ -1,12 +1,11 @@
-package de.robv.android.xposed.callbacks;
+package de.robv.android.xposedcompat.callbacks;
 
 import android.content.pm.ApplicationInfo;
 
-import com.swift.sandhook.xposedcompat.utils.ProcessUtils;
 import com.swift.sandhook.xposedcompat.XposedCompat;
 
-import de.robv.android.xposed.IXposedHookLoadPackage;
-import de.robv.android.xposed.XposedBridge.CopyOnWriteSortedSet;
+import de.robv.android.xposedcompat.IXposedHookLoadPackage;
+import de.robv.android.xposedcompat.XposedBridge.CopyOnWriteSortedSet;
 
 /**
  * This class is only used for internal purposes, except for the {@link LoadPackageParam}
