@@ -1,9 +1,12 @@
 # SandHook
 - Android ART Hook
 - Native Inline Hook
-## Version 
 
-[ ![Version](https://api.bintray.com/packages/ganyao114/maven/hooklib/images/download.svg) ](https://bintray.com/ganyao114/maven/hooklib/_latestVersion)
+Repackage 'de.robv.android.xposed' to 'de.robv.android.xposedcompat' to avoid Xposed detection.
+
+## Version
+
+Based on SandHook 4.2.1, commit 6fc401bd
 
 ## Chinese
 
@@ -42,110 +45,26 @@ hook plugin demo for annotation api
 
 # how to use
 
+Add jitpack repository first:
+
 ```gradle
-implementation 'com.swift.sandhook:hooklib:4.2.0'
-// need for android 11
-implementation 'com.swift.sandhook:nativehook:4.2.0'
-```
-
-## Annotation API
-
---------------------------------------------------------------------
-
-- hook method must be a static method
-- first par must be this if method is not static
-- method description must "same"(can be isAssignableFrom) with origin method
-- backup method same with above
-
-```java
-@HookClass(Activity.class)
-//@HookReflectClass("android.app.Activity")
-public class ActivityHooker {
-
-    @HookMethodBackup("onCreate")
-    @MethodParams(Bundle.class)
-    static Method onCreateBackup;
-
-    @HookMethodBackup("onPause")
-    static HookWrapper.HookEntity onPauseBackup;
-
-    @HookMethod("onCreate")
-    @MethodParams(Bundle.class)
-    public static void onCreate(Activity thiz, Bundle bundle) throws Throwable {
-        Log.e("ActivityHooker", "hooked onCreate success " + thiz);
-        SandHook.callOriginByBackup(onCreateBackup, thiz, bundle);
-    }
-
-    @HookMethod("onPause")
-    public static void onPause(@ThisObject Activity thiz) throws Throwable {
-        Log.e("ActivityHooker", "hooked onPause success " + thiz);
-        onPauseBackup.callOrigin(thiz);
-    }
-
+allprojects {
+    repositories { maven { url 'https://jitpack.io' } }
 }
-
-
-
-//or like this:
-
-@HookClass(TestClass.class)
-public class NewAnnotationApiHooker {
-
-    @HookMethod("testNewHookApi")
-    public static void onTestNewHookApi(@ThisObject TestClass thiz, @Param("com.swift.sandhook.MainActivity") Activity activity, int a) {
-        Log.e("TestClassHook", "testNewHookApi been hooked");
-        onTestNewHookApiBackup(thiz, activity, a);
-    }
-
-    @HookMethodBackup("testNewHookApi")
-    public static void onTestNewHookApiBackup(@ThisObject TestClass thiz, @Param("com.swift.sandhook.MainActivity") Activity activity, int a) {
-        onTestNewHookApiBackup(thiz, activity, a);
-    }
-
-}
-
-
-
-//first set debuggable
-SandHookConfig.DEBUG = BuildConfig.DEBUG;
-
-and
-
-//add hookers
-SandHook.addHookClass(CtrHook.class, LogHooker.class, CustmizeHooker.class, ActivityHooker.class, ObjectHooker.class);
-
-you can also use:
-SanHook.public static boolean hook(Member target, Method hook, Method backup) {}
-
 ```
 
-if hookers is in plugin(like xposed):  
+Then add these dependencies:
 
-```groovy
-provided 'com.swift.sandhook:hookannotation:4.2.0'
+```gradle
+    implementation 'com.github.DevDengChao.SandHook:hooklib:4.2.1'
+    implementation 'com.github.DevDengChao.SandHook:xposedcompat:4.2.1'
 ```
-  
-in your plugin
-
-if OS <= 5.1 
-backup method can call itself to avoid be inlining
 
 ## Xposed API
 
 --------------------------------------------------------------------
 
 Now you can use Xposed api:
-
-We have two different implements:
-```groovy
-//stable
-implementation 'com.swift.sandhook:xposedcompat:4.2.0'
-
-//or
-
-//hook fast first time
-implementation 'com.swift.sandhook:xposedcompat_new:4.2.0'
-```
 
 ```java
 
@@ -213,46 +132,7 @@ To bypass hidden api on P & Q
 
 You must set debuggble of the target hook process before init when OS >= 8.0.  
 
-SandHookConfig.DEBUG = <Debuggable of target process>  
-
-# Native Hook
-
-## simple hook(no backup)
-#include "includes/sandhook.h"  
-
-bool nativeHookNoBackup(void* origin, void* hook);
-
-## need backup origin method
-#include "sandhook_native.h"  
-
-void* SandInlineHook(void* origin, void* replace);  
-
-void* SandInlineHookSym(const char* so, const char* symb, void* replace);  
-
-
-return is backup method
-
-## break point
-
-you can insert a break point in body of method(not only start of method), so you can read/write registers in break point.  
-
-
-bool SandBreakPoint(void* origin, void (*callback)(REG[]));  
-
-bool SandSingleInstBreakPoint(void *origin, BreakCallback(callback));
-
-## short method 
-
-#include "sandhook_native.h"  
-
-void* SandSingleInstHook(void* origin, void* replace);  
-
-void* SandSingleInstHookSym(const char* so, const char* symb, void* replace);  
-
-use it when your method is <= 16bytes(64bit)/8bytes(32bit)  
-
-SandSingleInstHook only need 4bytes length
-
+SandHookConfig.DEBUG = <Debuggable of target process>
 
 ## more
 
