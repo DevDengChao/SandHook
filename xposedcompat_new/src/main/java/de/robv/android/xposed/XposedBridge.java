@@ -1,4 +1,4 @@
-package de.robv.android.xposed;
+package de.robv.android.xposedcompat;
 
 import android.annotation.SuppressLint;
 import android.util.Log;
@@ -21,8 +21,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import de.robv.android.xposed.callbacks.XC_InitPackageResources;
-import de.robv.android.xposed.callbacks.XC_LoadPackage;
+import de.robv.android.xposedcompat.callbacks.XC_InitPackageResources;
+import de.robv.android.xposedcompat.callbacks.XC_LoadPackage;
 
 /**
  * This class contains most of Xposed's central logic, such as initialization and callbacks used by
