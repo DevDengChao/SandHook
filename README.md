@@ -56,8 +56,7 @@ allprojects {
 Then add these dependencies:
 
 ```gradle
-    implementation 'com.github.DevDengChao.SandHook:hooklib:4.2.1'
-    implementation 'com.github.DevDengChao.SandHook:xposedcompat:4.2.1'
+    implementation 'com.github.DevDengChao.SandHook:xposedcompat:4.2.2'
 ```
 
 ## Xposed API
