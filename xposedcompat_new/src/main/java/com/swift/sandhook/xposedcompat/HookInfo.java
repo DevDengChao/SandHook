@@ -3,7 +3,7 @@ package com.swift.sandhook.xposedcompat;
 import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 
-import de.robv.android.xposed.XposedBridge;
+import de.robv.android.xposedcompat.XposedBridge;
 
 /**
  * @author Swift Gan

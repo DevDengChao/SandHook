@@ -1,4 +1,4 @@
-package de.robv.android.xposed;
+package de.robv.android.xposedcompat;
 
 import android.util.Log;
 
@@ -14,7 +14,7 @@ import java.util.zip.ZipFile;
 import dalvik.system.DexClassLoader;
 import dalvik.system.DexFile;
 
-import static de.robv.android.xposed.XposedHelpers.closeSilently;
+import static de.robv.android.xposedcompat.XposedHelpers.closeSilently;
 
 public final class XposedInit {
     private static final String TAG = XposedBridge.TAG;

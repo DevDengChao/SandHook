@@ -20,11 +20,11 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 
-import de.robv.android.xposed.IXposedHookLoadPackage;
-import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XposedBridge;
-import de.robv.android.xposed.XposedInit;
-import de.robv.android.xposed.callbacks.XC_LoadPackage;
+import de.robv.android.xposedcompat.IXposedHookLoadPackage;
+import de.robv.android.xposedcompat.XC_MethodHook;
+import de.robv.android.xposedcompat.XposedBridge;
+import de.robv.android.xposedcompat.XposedInit;
+import de.robv.android.xposedcompat.callbacks.XC_LoadPackage;
 
 /**
  * @author Swift Gan

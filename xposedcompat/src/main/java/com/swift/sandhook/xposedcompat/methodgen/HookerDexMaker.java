@@ -29,8 +29,8 @@ import java.nio.ByteBuffer;
 import java.util.Map;
 
 import dalvik.system.InMemoryDexClassLoader;
-import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XposedBridge;
+import de.robv.android.xposedcompat.XC_MethodHook;
+import de.robv.android.xposedcompat.XposedBridge;
 
 import static com.swift.sandhook.xposedcompat.utils.DexMakerUtils.MD5;
 import static com.swift.sandhook.xposedcompat.utils.DexMakerUtils.autoBoxIfNecessary;

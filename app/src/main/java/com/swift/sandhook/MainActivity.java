@@ -18,7 +18,7 @@ import com.swift.sandhook.test.TestClass;
 
 import java.lang.reflect.Field;
 
-import de.robv.android.xposed.XposedHelpers;
+import de.robv.android.xposedcompat.XposedHelpers;
 
 public class MainActivity extends AppCompatActivity {
 
